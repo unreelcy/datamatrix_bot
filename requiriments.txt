@@ -1,0 +1,4 @@
+aiogram
+pylibdmtx
+openpyxl
+pillow
