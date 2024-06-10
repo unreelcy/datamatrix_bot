@@ -1,6 +1,8 @@
-from aiogram import types, F, Router
+from aiogram import types, F, Router, MagicFilter, Bot
 from aiogram.types import Message
 from aiogram.filters import Command
+from config import file_directory
+from utils import do_magic
 
 
 router = Router()
@@ -11,6 +13,12 @@ async def start_handler(msg: Message):
     await msg.answer("Для создания pdf файла с data matrix просто отправьте xlsx документ")
 
 
-@router.message()
+@router.message(content_types=["document"])
 async def file_handler(msg: Message):
-    await msg.answer(f"Твой ID: {msg.from_user.id} {msg.from_user.first_name} {msg.text}")
+    await msg.answer(f"Файл загружается {msg.document.file_name} {msg.document.file_id}")
+    await Bot.download_file(msg.document.file_id, destination=format('Downloaded_files' + r'\') + )
+
+
+@router.message()
+async def message_handler(msg: Message):
+    await msg.answer(f"Для работы отправьте файл")
