@@ -17,7 +17,7 @@ async def start_handler(msg: Message):
 @router.message(F.document)
 async def file_handler(msg: Message):
     file_name = msg.date.strftime('%d.%m.%Y_%H.%M.%S') + '_' + ''.join(msg.document.file_name.split('.')[:-1])
-    await msg.answer(f'Файл {msg.document.file_name} принят')
+    await msg.answer(f'Файл {msg.document.file_name} принят.\n Ожидайте обратботки)')
 
     path = file_directory_download + msg.document.file_name
     await msg.bot.download(file=msg.document.file_id, destination=path)
