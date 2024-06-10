@@ -31,19 +31,19 @@ def open_xlsx_to_data(file_path: str):
     sheet = book.active
     data = []
 
-    i = 1
+    i = 2
     while sheet[f'B{i}'].value:
-        if len(sheet[f'B{i}'].value) >= 83:
+        if len(sheet[f'B{i}'].value):
             data.append([sheet[f'B{i}'].value, sheet[f'C{i}'].value])
             i += 1
     return data
 
 
 def do_magic(file_path: str, file_name: str) -> str:
+    print(f'файл {file_path} принят')
     data = open_xlsx_to_data(file_path)
-    save_pdf_dmtrx(data, file_directory_convert + file_name)
-
-    return file_directory_convert + file_name
+    save_pdf_dmtrx(data, file_directory_convert + file_name + '.pdf')
+    return file_directory_convert + file_name + '.pdf'
 
 
 if __name__ == '__main__':

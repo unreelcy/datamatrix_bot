@@ -1,5 +1,3 @@
-import io
-
 from aiogram import Router, F
 from aiogram.types import Message, FSInputFile
 from aiogram.filters import Command
@@ -18,14 +16,17 @@ async def start_handler(msg: Message):
 
 @router.message(F.document)
 async def file_handler(msg: Message):
-    file_name = msg.date.strftime('%d.%m.%Y-%H.%M.%S') + msg.document.file_name
-    path = file_directory_download + file_name
+    file_name = msg.date.strftime('%d.%m.%Y_%H.%M.%S') + '_' + ''.join(msg.document.file_name.split('.')[:-1])
+    await msg.answer(f'Файл {msg.document.file_name} принят')
 
-    # await msg.answer(f"Файл загружается {file_name}")
+    path = file_directory_download + msg.document.file_name
     await msg.bot.download(file=msg.document.file_id, destination=path)
-    converted_path = do_magic(path, msg.document.file_name)
+
+    converted_path = do_magic(path, file_name)
     doc = FSInputFile(converted_path)
-    await msg.reply_document(doc)
+    await msg.answer_document(doc)
+
+
 
 
 @router.message()
