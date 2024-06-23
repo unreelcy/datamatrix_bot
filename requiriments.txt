@@ -2,3 +2,4 @@ aiogram
 pylibdmtx
 openpyxl
 pillow
+pypdf

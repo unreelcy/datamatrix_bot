@@ -14,6 +14,11 @@ async def start_handler(msg: Message):
     await msg.answer("Для создания pdf файла с data matrix просто отправьте xlsx документ")
 
 
+@router.message(F.text.lower().contains('мяу'))
+async def start_handler(msg: Message):
+    await msg.answer("гав")
+
+
 @router.message(F.document)
 async def file_handler(msg: Message):
     file_name = msg.date.strftime('%d.%m.%Y_%H.%M.%S') + '_' + ''.join(msg.document.file_name.split('.')[:-1])
