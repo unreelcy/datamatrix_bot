@@ -12,7 +12,6 @@ def str_to_str_with_gs(txt: str):
 
 
 def save_pdf_dmtrx(data: list, file_save_path: str):
-    print(data)
     data_pdf = []
     for indx in range(len(data)):
         txt = str_to_str_with_gs(data[indx][0])
@@ -72,10 +71,3 @@ def do_magic(file_path: str, file_name: str) -> str:
     save_pdf_dmtrx(data, file_directory_convert + file_name + '.pdf')
     add_mark_to_pdf(data, file_name)
     return file_directory_marks + file_name + '.pdf'
-
-
-if __name__ == '__main__':
-    pass
-    # data = [["0104640268237136215-M'MCVeDczSG91EE1092myvxSj2038kM1tnf4vXDEyXVXgaB8ExXtG12HCMYSiM=", '295/80/22444.5 18pr KAPSEN HS202 152/145555524249M вед'], ['0104640268237136215,D4oqutHFIG%91EE1092If3HFx5tYI9JOsl0W3vrD04PaJkZVqvl4Kdfa/zIiCE=', '295/80/22.5 18pr KAPSEN HS202 152/149M вед'], ['0104640268237136215:d6nfnYA5Rgx91EE10923HpDiYzkb7wcK+u9KOi5eVn5tkmcmJJ1/oLeM4LpFxI=', '295/80/22.5 18pr KAPSEN HS202 152/149M вед']]
-    # filename = r'23.06.2024_18.32.11_3marks.pdf'
-    # add_mark_to_pdf(data, filename)
